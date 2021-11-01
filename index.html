@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Exercises</title>
+</head>
+<body>
+    <script>
+
+
+//Varios ejercicios de algoritos en JavaScript, trabajando con la sintaxis
+
+
+
+
+
+        //EJERCICIO BUSQUEDA DE PERFILES : 
+
+//   Búsqueda de perfilesAprobado
+// Tenemos un arreglo de objetos que representan a diferentes personas en nuestras listas de contactos.
+
+// Una función lookUpProfile que recibe nombre (name) y una propiedad (prop) como argumentos preescritos para ti.
+
+// La función debe verificar si el nombre (name) es el nombre de pila del contacto (firstName) y la propiedad (prop) dada es una propiedad de ese contacto.
+
+// Si ambos son verdaderos, entonces devolver el "valor" de esa propiedad.
+
+// Si name no corresponde a ningún contacto, entonces devuelve la cadena No such contact.
+
+// Si prop no corresponde a ninguna propiedad válida de un contacto encontrado que coincida con name entonces devuelve la cadena No such property.
+
+
+
+// lookUpProfile("Kristian", "lastName") debe devolver la cadena Vos
+
+// Aprobado
+// lookUpProfile("Sherlock", "likes") debe devolver ["Intriguing Cases", "Violin"]
+
+// Aprobado
+// lookUpProfile("Harry", "likes") debe devolver un arreglo
+
+// Aprobado
+// lookUpProfile("Bob", "number") debe devolver la cadena No such contact
+
+// Aprobado
+// lookUpProfile("Bob", "potato") debe devolver la cadena No such contact
+
+// Aprobado
+// lookUpProfile("Akira", "address") debe devolver la cadena No such property
+
+
+
+//Array que se nos da para empezar
+var contacts = [
+    {
+        "firstName": "Akira",
+        "lastName": "Laine",
+        "number": "0543236543",
+        "likes": ["Pizza", "Coding", "Brownie Points"]
+    },
+    {
+        "firstName": "Harry",
+        "lastName": "Potter",
+        "number": "0994372684",
+        "likes": ["Hogwarts", "Magic", "Hagrid"]
+    },
+    {
+        "firstName": "Sherlock",
+        "lastName": "Holmes",
+        "number": "0487345643",
+        "likes": ["Intriguing Cases", "Violin"]
+    },
+    {
+        "firstName": "Kristian",
+        "lastName": "Vos",
+        "number": "unknown",
+        "likes": ["JavaScript", "Gaming", "Foxes"]
+    }
+];
+
+
+//Nos dan la funcion y los parametros, todo lo otro lo hice YO
+function lookUpProfile(name, prop) {
+  // Cambia solo el código debajo de esta línea
+  let noName =0
+    
+for(let i = 0;i < contacts.length;i++) {
+
+    if(contacts[i]["firstName"] === name ) {
+        if(contacts[i].hasOwnProperty(prop)) {
+            return contacts[i][prop]
+        }else if(contacts[i].hasOwnProperty(prop) === false ) {
+            return "La propiedad no existe"   
+    }
+    } else if(contacts[i]["firstName"] !== name) {
+        noName++
+        if(noName === contacts.length) {
+            return "El contacto no esta en la lista"
+        }
+        
+    }
+    }
+   // Cambia solo el código encima de esta línea
+}
+console.log(lookUpProfile("Akira","lastName"))
+
+
+
+
+
+//Generar numeros aleatorio dentro de un rango minimo y maximo: 
+function generarAleatorios(numMin,numMax) {
+    return Math.floor(Math.random() * (numMax - numMin + 1) + 1)
+}
+for(let i = 0; i<15;i++) {
+    //console.log(generarAleatorios(rango minimo, rango maximo))
+    console.log(generarAleatorios(5,15))
+}
+
+
+console.clear()
+
+
+
+//EJERCICIO CON GET Y SET PARA CONVERTIR GRADOS
+
+// Utiliza la palabra clave class para crear una clase Thermostat. El constructor acepta una temperatura Fahrenheit.
+
+// En la clase, crea un getter para obtener la temperatura en Celsius y un setter para ajustar la temperatura en Celsius.
+
+// Recuerda que C = 5/9 * (F - 32) y F = C * 9.0 / 5 + 32 donde F es el valor de la temperatura en Fahrenheit y C es el valor de la misma temperatura en Celsius.
+
+// Nota: Cuando implementes esto, rastrearás la temperatura dentro de la clase en una escala, ya sea Fahrenheit o Celsius.
+
+// Este es el poder de un getter y un setter. Estás creando una API para otro usuario, que puede obtener el resultado correcto independientemente de cuál estés rastreando.
+
+// En otras palabras, estás abstrayendo los detalles de la implementación del usuario.
+
+
+class Thermostat{
+  constructor(temperature){
+   this._temperature = temperature
+  }
+    get temperature(){
+    //Obtenemos el valor convertido a Celsius
+   return this._f = 5/9 * (this._temperature - 32)
+  }
+  set temperature(c) {
+      //Convertimos el celsius a grados Fahrenheit
+    this._temperature = c * 9.0 / 5 + 32
+  }
+}
+// Cambia solo el código encima de esta línea
+
+const thermos = new Thermostat(76); // Ajuste en escala Farenheit
+let temp = thermos.temperature; // 24.44 en Celsius
+console.log(temp)
+thermos.temperature = 26;
+temp = thermos.temperature; // 26 en Celsius
+console.log(temp)
+
+
+
+
+
+
+//EJERCICIOS DE ALGORITMOS BASICOS
+
+//COnvertir de  Celsius a Fahrenheit: 
+function convertToF(celsius) {
+  let fahrenheit = celsius * 9/5 + 32;
+  return fahrenheit;
+}
+convertToF(30);
+
+
+//Encontrar la palabra mas larga de un texto pasado por parametro:
+function findLongestWordLength(str) {
+  let array  = str.split(" ")
+  let palabraLarga = array[0]
+  for(let i = 1; i<array.length;i++) {
+    if(palabraLarga.length < array[i].length) {
+      palabraLarga = array[i]
+    }
+  }
+  return palabraLarga.length;
+}
+console.log(findLongestWordLength("May the force be with you"));
+
+
+//Devuelve los números mayores en los arreglos
+//Devuelve un arreglo que consista en el mayor número de cada sub-arreglo proporcionado. Por simplicidad, el arreglo dado contendrá exactamente 4 sub-arreglos.
+// Recuerda, puedes iterar a través de un arreglo utilizando un simple bucle for, y acceder a cada miembro del arreglo con la sintaxis arr[i].
+
+//largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]) debe devolver un arreglo. :
+
+function largestOfFour(arr) {
+  let arregloFinal = [];
+  let numMayor;
+    for (let i = 0; i < arr.length; i++) {
+      numMayor = Math.max(...arr[i])
+      arregloFinal.push(numMayor)
+      
+    }
+    return arregloFinal
+}
+
+
+//Repite una cadena repite una cadena, hay que repetir el str por la cantidad de veces que le pasemos como 2do argumento,si le paso un numero negativo devuelve un string vacio :
+function repeatStringNumTimes(str, num) {
+  let text = ""
+  if(num <=0) {
+    return ""
+  }
+  for(let i = 0;i<num;i++) {
+    text += str
+  }
+  return text
+}
+console.log(repeatStringNumTimes("abc", 3));
+
+
+
+
+//Recorta una cadena
+// Recorta una cadena (primer argumento) si es más larga que la longitud máxima proporcionada (segundo argumento). Devuelve la cadena recortada con un ... al final. :
+function truncateString(str, num) {
+  let text = ""
+  if(str.length > num) {
+    for(let i = 0;i<num;i++) {
+     text += str[i]
+   }
+  }else if(str.length <= num) {
+     return str
+   }
+  
+  return `${text}...`;
+}
+truncateString("A-tisket a-tasket A green and yellow basket", 8);
+//truncateString("A-tisket a-tasket A green and yellow basket", 8) debe devolver la cadena A-tisket....
+
+//truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length) debe devolver la cadena A-tisket a-tasket A green and yellow basket.
+
+//truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length + 2) debe devolver la cadena A-tisket a-tasket A green and yellow basket.
+
+
+//Buscadores guardianes
+//Crea una función que recorra un arreglo arr y devuelva el primer elemento que pase un "detector de verdad". Esto significa que dado un elemento x, el "detector de verdad" es pasado si func(x) es true. Si ningún elemento pasa la prueba. la función debería devolver undefined :
+function findElement(arr, func) {
+  for(let i = 0;i<arr.length;i++) {
+    if(func(arr[i])) {
+      return arr[i]
+    }
+  }
+}
+findElement([1, 2, 3, 4], num => num % 2 === 0);
+//findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; }) debe devolver 8.
+
+//findElement([1, 3, 5, 9], function(num) { return num % 2 === 0; }) debe devolver undefined.
+
+
+
+//Boo who (Booleano Quién)
+// Comprueba si el valor está clasificado como booleano primitivo. Devuelve true o false.
+// Booleanos primitivos son true y false.
+function booWho(bool) {
+   if(bool === true || bool === false) {
+     return true
+   }
+  //o tambien : 
+  //else{
+    //return false
+  //}
+  return false
+
+
+  //Otra solucion :  return typeof bool === "boolean";
+}
+booWho(null);
+//booWho(true) debe devolver true.
+// booWho(false) debe devolver true.
+// booWho([1, 2, 3]) debe devolver false.
+
+
+
+
+
+//Haz que la primera letra de una palabra este en mayúscula
+// Devuelve la cadena proporcionada con la primera letra de cada palabra en mayúsculas. Asegúrate de que el resto de la palabra esté en minúsculas.
+// Como propósito de este ejercicio, debes también usar mayúsculas conectando palabras como the y of.
+
+//Este no lo hice solo, lo copie de la ayuda de FCC
+function titleCase(str) {
+  
+  return str.toLowerCase().replace(/(^|\s)\S/g, L => L.toUpperCase());;
+}
+titleCase("I'm a little tea pot");
+
+//titleCase("I'm a little tea pot") debe devolver la cadena I'm A Little Tea Pot.
+// titleCase("sHoRt AnD sToUt") debe devolver la cadena Short And Stout.
+// titleCase("HERE IS MY HANDLE HERE IS MY SPOUT") debe devolver la cadena Here Is My Handle Here Is My Spout.
+
+
+
+
+//Cortar y rebanar
+// Tienes dos arreglos y un índice.
+// Copia cada elemento del primer arreglo en el segundo arreglo, en orden.
+// Comienza insertando elementos en el índice n del segundo arreglo.
+// Devuelve el arreglo resultante. Los arreglos de entrada deben permanecer iguales luego de que se ejecute la función.
+
+function frankenSplice(arr1, arr2, n) {
+  let nuevoArreglo = [...arr2]
+  nuevoArreglo.splice(n,0,...arr1)
+  console.log(nuevoArreglo)
+  return nuevoArreglo
+}
+console.log(frankenSplice([1, 2, 3], [4, 5,6], 1));
+console.log(frankenSplice(["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2));
+// frankenSplice([1, 2, 3], [4, 5], 1) debe devolver [4, 1, 2, 3, 5].
+// frankenSplice([1, 2], ["a", "b"], 1) debe devolver ["a", 1, 2, "b"].
+// frankenSplice(["claw", "tentacle"], ["head", "shoulders", "knees", "toes"], 2) debe devolver ["head", "shoulders", "claw", "tentacle", "knees", "toes"].
+
+
+
+
+//Rebote falsy
+// Quita todos los valores falsos de un arreglo.
+// Los valores falsos en JavaScript son false, null, 0, "", undefined y NaN.
+// Sugerencia: Intenta convertir cada valor a booleano.
+
+function bouncer(arr) {
+  //Forma 1:
+  let arreglo = []
+  for(let i = 0;i<arr.length;i++) {
+    if(Boolean(arr[i]) === true){
+    arreglo.push(arr[i])
+ }
+
+ //Forma 2:
+//  return arr.filter(Boolean);
+}
+ return arreglo
+}
+bouncer([7, "ate", "", false, 9]);
+// bouncer([7, "ate", "", false, 9]) debe devolver [7, "ate", 9].
+// bouncer(["a", "b", "c"]) debe devolver ["a", "b", "c"].
+// bouncer([false, null, 0, NaN, undefined, ""]) debe devolver [].
+
+
+
+
+
+//Dónde pertenezco
+// Devuelve el índice mas bajo en el que un valor (segundo argumento) debe ser insertado en un arreglo (primer argumento) una vez que éste haya sido ordenado. El valor devuelto debe ser un número.
+// Por ejemplo, getIndexToIns([1,2,3,4], 1.5) debe devolver 1 por que este valor es más grande que 1 (índice 0), pero menor que 2 (índice 1).
+// De esta forma, getIndexToIns([20,3,5], 19) debe devolver 2 porque una vez ordenado el arreglo, éste se verá así [3,5,20] y 19 es menor que 20 (índice 2) y mayor que 5 (índice 1).
+
+function getIndexToIns(arr, num) {
+ let arreglo = arr.sort((a,b) =>{
+  if(a === b) {
+    return 0
+  }
+  if(a < b) {
+    return -1
+  }
+  return 1
+  })
+  let index = 0
+  if(arr.length === 0) {
+    return 0
+  }
+  for(let i = 0;i<arreglo.length;i++) {
+    if(num <= arreglo[i]) {
+    
+       return index
+    }else{
+      index++
+    }
+  }
+   if(num > arreglo[arreglo.length - 1]) {
+      
+      return index
+    }
+}
+
+getIndexToIns([40, 60], 50);
+// getIndexToIns([10, 20, 30, 40, 50], 35) debe devolver 3.
+// getIndexToIns([10, 20, 30, 40, 50], 30) debe devolver 2.
+// getIndexToIns([2, 5, 10], 15) debe devolver 3.
+
+
+
+
+
+//Monito Trocitos
+//Escribe una función que divida un arreglo (primer argumento) en grupos de la longitud size (segundo argumento) y los devuelva como un arreglo bidimensional.
+
+function chunkArrayInGroups(arr, size) {
+  let arregloFinal = [],
+    posicion = 0,
+    indexFinal = size
+  for(let i = 0;i<arr.length;i+=size) {
+    arregloFinal.push(arr.slice(posicion,indexFinal))
+    indexFinal += size
+    posicion = posicion + size
+  }
+ return arregloFinal
+}
+console.log(chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6, 7, 8], 2))
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5], 3) debe devolver [[0, 1, 2], [3, 4, 5]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2) debe devolver [[0, 1], [2, 3], [4, 5]].
+// chunkArrayInGroups([0, 1, 2, 3, 4, 5], 4) debe devolver [[0, 1, 2, 3], [4, 5]].
+
+
+//Mutaciones
+// Devuelve true si la cadena de caracteres en el primer elemento del arreglo contiene todas las letras de la cadena en el segundo elemento del arreglo.
+// Por ejemplo, ["hello", "Hello"], debe devolver true porque todas las letras de la segunda cadena están presentes en la primera, ignorando mayúsculas o minúsculas.
+// Los argumentos ["hello", "hey"] deben devolver false porque la cadena hello no contiene y.
+// Finalmente, ["Alien", "line"], debe devolver true porque todas las letras de line están presentes en Alien.
+
+function mutation(arr) {
+  let test = arr[1].toLowerCase();
+  let target = arr[0].toLowerCase();
+  for (let i = 0; i < test.length; i++) {
+    if (target.indexOf(test[i]) < 0) return false;
+  }
+  return true;
+} 
+mutation(["hello", "hey"]);
+// mutation(["zyxwvutsrqponmlkjihgfedcba", "qrstu"]) debe devolver true.
+// mutation(["Mary", "Army"]) debe devolver true.
+// mutation(["Mary", "Aarmy"]) debe devolver true.
+// mutation(["Alien", "line"]) debe devolver true.
+// mutation(["floor", "for"]) debe devolver true.
+// mutation(["hello", "neo"]) debe devolver false.
+// mutation(["voodoo", "no"]) debe devolver false.
+
+
+//FIN DE EJERCICIOS DE ALGORITMOS BASICOS 
+
+
+
+//POO
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})();
+let objeto = {
+  nombre :"OScar",
+  patas : 2
+}
+
+//Ten en cuenta que has invocado una IIFE que devuelve un objeto motionModule. El objeto devuelto contiene todos los comportamientos de los mixins como propiedades del objeto. La ventaja del patrón del módulo es que todos los comportamientos de movimiento pueden ser empaquetados en un solo objeto que puede ser usado por otras partes del código. Así se debe utilizar:
+//motionModule
+//glideMixin(duck);
+//duck.glide();
+
+motionModule.glideMixin(objeto)
+console.log(objeto.glide())
+
+
+
+
+
+
+//Usa el metodo map para extraer datos de un arreglo
+
+// El arreglo watchList contiene objetos con información sobre varias películas. Usa map en watchList para asignar un nuevo arreglo de objetos a la variable ratings. Cada película en el nuevo arreglo debe tener solo una tecla title con el nombre de la película, y una tecla rating con la calificación IMDB. El código en el editor utiliza actualmente un bucle for para hacer esto, por lo que debes reemplazar la funcionalidad del bucle con tu expresión map.
+var watchList = [
+  {
+    "Title": "Inception",
+    "Year": "2010",
+    "Rated": "PG-13",
+    "Released": "16 Jul 2010",
+    "Runtime": "148 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Christopher Nolan",
+    "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    "Plot": "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+    "Language": "English, Japanese, French",
+    "Country": "USA, UK",
+    "Awards": "Won 4 Oscars. Another 143 wins & 198 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.8",
+    "imdbVotes": "1,446,708",
+    "imdbID": "tt1375666",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "Runtime": "169 min",
+    "Genre": "Adventure, Drama, Sci-Fi",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan, Christopher Nolan",
+    "Actors": "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+    "Plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "Language": "English",
+    "Country": "USA, UK",
+    "Awards": "Won 1 Oscar. Another 39 wins & 132 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.6",
+    "imdbVotes": "910,366",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "The Dark Knight",
+    "Year": "2008",
+    "Rated": "PG-13",
+    "Released": "18 Jul 2008",
+    "Runtime": "152 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+    "Actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+    "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+    "Language": "English, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Won 2 Oscars. Another 146 wins & 142 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    "Metascore": "82",
+    "imdbRating": "9.0",
+    "imdbVotes": "1,652,832",
+    "imdbID": "tt0468569",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Batman Begins",
+    "Year": "2005",
+    "Rated": "PG-13",
+    "Released": "15 Jun 2005",
+    "Runtime": "140 min",
+    "Genre": "Action, Adventure",
+    "Director": "Christopher Nolan",
+    "Writer": "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
+    "Actors": "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
+    "Plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+    "Language": "English, Urdu, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+    "Metascore": "70",
+    "imdbRating": "8.3",
+    "imdbVotes": "972,584",
+    "imdbID": "tt0372784",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Avatar",
+    "Year": "2009",
+    "Rated": "PG-13",
+    "Released": "18 Dec 2009",
+    "Runtime": "162 min",
+    "Genre": "Action, Adventure, Fantasy",
+    "Director": "James Cameron",
+    "Writer": "James Cameron",
+    "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+    "Plot": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    "Language": "English, Spanish",
+    "Country": "USA, UK",
+    "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
+    "Metascore": "83",
+    "imdbRating": "7.9",
+    "imdbVotes": "876,575",
+    "imdbID": "tt0499549",
+    "Type": "movie",
+    "Response": "True"
+  }
+];
+
+// Cambia solo el código debajo de esta línea
+
+var ratings = [];
+// for(var i=0; i < watchList.length; i++){
+//   ratings.push({title: watchList[i]["Title"],  rating: watchList[i]["imdbRating"]});
+// }
+     
+watchList.map((el) =>{
+ let obj = {}
+ obj.title = el.Title;
+ obj.rating = el.imdbRating
+ ratings.push(obj)
+})
+console.log(ratings)
+
+
+
+
+
+
+// Implementa map en un prototipo  (Mi propia version del metodo map)
+// Como has visto anteriormente, al aplicar Array.prototype.map(), o simplemente map(), el método map devuelve un arreglo de la misma longitud que el arreglo dentro del que fue llamado. Esto tampoco altera el arreglo original, siempre y cuando su función callback no lo haga.
+
+// En otras palabras, map es una función pura, y su salida depende únicamente de sus entradas. Además, toma otra función como argumento.
+
+// Puedes aprender mucho sobre el método map si implementas tu propia versión. Se recomienda utilizar un bucle for o Array.prototype.forEach().
+
+// Escribe tu propio Array.prototype.myMap(), el cual debe comportarse exactamente como Array.prototype.map(). No debes utilizar el método incorporado map. Se puede acceder a la instancia de Array en el método myMap usando this.
+
+var s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback) {
+  var newArray = [];
+  // Cambia solo el código debajo de esta línea
+   for(let i = 0;i<this.length;i++){
+     newArray.push(callback(this[i]))
+   }    
+  // Cambia solo el código encima de esta línea
+  console.log(newArray)
+  return newArray;
+};
+
+var new_s = s.myMap(function(item) {
+  return item * 2;
+});
+
+
+
+
+
+
+
+
+
+
+//Ejercicio con filter :
+// La variable watchList contiene un arreglo de objetos con información sobre varias películas. Utiliza una combinación de filter y map en watchList para asignar un nuevo arreglo de objetos con solo title y rating claves. El nuevo arreglo solo debe incluir objetos donde imdbRating es mayor o igual a 8.0. Ten en cuenta que los valores rating se guardan como cadenas en el objeto y puedes necesitar convertirlos en números para realizar operaciones matemáticas en ellos.
+var watchList2 = [
+  {
+    "Title": "Inception",
+    "Year": "2010",
+    "Rated": "PG-13",
+    "Released": "16 Jul 2010",
+    "Runtime": "148 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Christopher Nolan",
+    "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    "Plot": "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+    "Language": "English, Japanese, French",
+    "Country": "USA, UK",
+    "Awards": "Won 4 Oscars. Another 143 wins & 198 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.8",
+    "imdbVotes": "1,446,708",
+    "imdbID": "tt1375666",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "Runtime": "169 min",
+    "Genre": "Adventure, Drama, Sci-Fi",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan, Christopher Nolan",
+    "Actors": "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+    "Plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "Language": "English",
+    "Country": "USA, UK",
+    "Awards": "Won 1 Oscar. Another 39 wins & 132 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.6",
+    "imdbVotes": "910,366",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "The Dark Knight",
+    "Year": "2008",
+    "Rated": "PG-13",
+    "Released": "18 Jul 2008",
+    "Runtime": "152 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+    "Actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+    "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+    "Language": "English, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Won 2 Oscars. Another 146 wins & 142 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    "Metascore": "82",
+    "imdbRating": "9.0",
+    "imdbVotes": "1,652,832",
+    "imdbID": "tt0468569",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Batman Begins",
+    "Year": "2005",
+    "Rated": "PG-13",
+    "Released": "15 Jun 2005",
+    "Runtime": "140 min",
+    "Genre": "Action, Adventure",
+    "Director": "Christopher Nolan",
+    "Writer": "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
+    "Actors": "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
+    "Plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+    "Language": "English, Urdu, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+    "Metascore": "70",
+    "imdbRating": "8.3",
+    "imdbVotes": "972,584",
+    "imdbID": "tt0372784",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Avatar",
+    "Year": "2009",
+    "Rated": "PG-13",
+    "Released": "18 Dec 2009",
+    "Runtime": "162 min",
+    "Genre": "Action, Adventure, Fantasy",
+    "Director": "James Cameron",
+    "Writer": "James Cameron",
+    "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+    "Plot": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    "Language": "English, Spanish",
+    "Country": "USA, UK",
+    "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
+    "Metascore": "83",
+    "imdbRating": "7.9",
+    "imdbVotes": "876,575",
+    "imdbID": "tt0499549",
+    "Type": "movie",
+    "Response": "True"
+  }
+];
+
+// Cambia solo el código debajo de esta línea
+let arreglo  = watchList2.map(el => ({title : el.Title,rating : el.imdbRating}))//1ero filtro todos los titulos y rating
+var filteredList = arreglo.filter(el => parseInt(el.rating) >= 8)//Y luego filtro solo los ratings >= 8
+
+// Cambia solo el código encima de esta línea
+
+console.log(filteredList);
+// filteredList debe ser igual a [{"title": "Inception","rating": "8.8"},{"title": "Interstellar","rating": "8.6"},{"title": "The Dark Knight","rating": "9.0"},{"title": "Batman Begins","rating": "8.3"}].
+
+
+
+
+
+
+// Implementa el método filter en un prototipo (Mi propio metodo Filter)
+// Puedes aprender mucho sobre el método filter si implementas tu propia versión. Se recomienda utilizar un bucle for o Array.prototype.forEach().
+// Escribe tu propio Array.prototype.myFilter(), que debe comportarse exactamente como Array.prototype.filter(). No debes utilizar el método incorporado filter. Se puede acceder a la instancia Array en el método myFilter usando this.
+
+
+var s = [23, 65, 98, 5];
+
+Array.prototype.myFilter = function(callback) {
+ 
+  var newArray = [];
+   // Cambia solo el código debajo de esta línea
+  for(let i = 0;i<this.length;i++){
+    if(callback(this[i])) {
+     newArray.push(this[i])
+    }
+  }
+  // Cambia solo el código encima de esta línea
+  return newArray;
+};
+var new_s = s.myFilter(function(item) {
+  return item % 2 === 1;
+});
+
+//new_s debe ser igual a [23, 65, 5].
+//Tu código no debe utilizar el método filter.
+
+
+
+
+
+
+
+//Ejercicio con  Reduce : 
+// La variable watchList contiene un arreglo de objetos con información sobre varias películas. Utiliza reduce para encontrar la calificación media en IMDB de las películas dirigidas por Christopher Nolan. Recuerda de desafíos anteriores filtrar (filter) los datos y mapear (map) sobre ellos para extraer lo que necesitas. Puede que necesites crear otras variables y devolver la calificación media con la función getRating. Ten en cuenta que los valores de calificación se guardan como cadenas en el objeto y necesitan ser convertidos en números antes de ser utilizados en cualquier operación matemática.
+// La variable global
+var watchList3 = [
+  {
+    "Title": "Inception",
+    "Year": "2010",
+    "Rated": "PG-13",
+    "Released": "16 Jul 2010",
+    "Runtime": "148 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Christopher Nolan",
+    "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    "Plot": "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+    "Language": "English, Japanese, French",
+    "Country": "USA, UK",
+    "Awards": "Won 4 Oscars. Another 143 wins & 198 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.8",
+    "imdbVotes": "1,446,708",
+    "imdbID": "tt1375666",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "Runtime": "169 min",
+    "Genre": "Adventure, Drama, Sci-Fi",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan, Christopher Nolan",
+    "Actors": "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+    "Plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "Language": "English",
+    "Country": "USA, UK",
+    "Awards": "Won 1 Oscar. Another 39 wins & 132 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.6",
+    "imdbVotes": "910,366",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "The Dark Knight",
+    "Year": "2008",
+    "Rated": "PG-13",
+    "Released": "18 Jul 2008",
+    "Runtime": "152 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+    "Actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+    "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+    "Language": "English, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Won 2 Oscars. Another 146 wins & 142 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    "Metascore": "82",
+    "imdbRating": "9.0",
+    "imdbVotes": "1,652,832",
+    "imdbID": "tt0468569",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Batman Begins",
+    "Year": "2005",
+    "Rated": "PG-13",
+    "Released": "15 Jun 2005",
+    "Runtime": "140 min",
+    "Genre": "Action, Adventure",
+    "Director": "Christopher Nolan",
+    "Writer": "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
+    "Actors": "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
+    "Plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+    "Language": "English, Urdu, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+    "Metascore": "70",
+    "imdbRating": "8.3",
+    "imdbVotes": "972,584",
+    "imdbID": "tt0372784",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Avatar",
+    "Year": "2009",
+    "Rated": "PG-13",
+    "Released": "18 Dec 2009",
+    "Runtime": "162 min",
+    "Genre": "Action, Adventure, Fantasy",
+    "Director": "James Cameron",
+    "Writer": "James Cameron",
+    "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+    "Plot": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    "Language": "English, Spanish",
+    "Country": "USA, UK",
+    "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
+    "Metascore": "83",
+    "imdbRating": "7.9",
+    "imdbVotes": "876,575",
+    "imdbID": "tt0499549",
+    "Type": "movie",
+    "Response": "True"
+  }
+];
+
+function getRating(watchList3){
+  // Cambia solo el código debajo de esta línea
+let arregloImdbs = watchList3.map(el => ({director : el.Director,rating : el.imdbRating}))//extraigo en un arreglo todos los directores y ratings del arreglo de arriba
+let arregloFiltrado = arregloImdb = arregloImdbs.filter(el => el.director === "Christopher Nolan")//Filtro el arreglo solo con los del director christopher nolan
+ let arregloFinal = arregloFiltrado.reduce((acc,el) => acc+= parseFloat(el.rating),0)//Saco la media de el arreglo filtrado
+  // Cambia solo el código encima de esta línea
+  return arregloFinal / arregloFiltrado.length;
+}
+console.log(getRating(watchList3))
+// Tu código debe utilizar el método reduce.
+// getRating(watchList) debe ser igual a 8.675.
+// Tu código no debe usar un bucle for.
+// Tu código debe devolver el resultado correcto después de modificar el objeto watchList.
+
+
+
+
+
+
+
+//Otro ejercicios con map, filter y reduce:
+// Utiliza las funciones de orden superior "map", "filter" o "reduce" para resolver un problema complejo
+// Ahora que has superado algunos desafíos usando funciones de orden superior como map(), filter(), y reduce(), ahora puedes aplicarlos para resolver un desafío más complejo.
+
+// Completa el código para la función squareList usando cualquier combinación de map(), filter(), y reduce(). La función debe devolver un nuevo arreglo que contenga los cuadrados de solamente los enteros positivos (números decimales no son enteros) cuando se le pasa un arreglo de números reales. Un ejemplo de un arreglo que contiene números reales es [-3, 4.8, 5, 3, -3.2].
+
+// Nota: Tu función no debe usar ningún tipo de bucle for o while o la función forEach().
+
+const squareList = arr => {
+let arregloDeEnteros = arr.filter(el => Number.isInteger(el) && el >= 0) //Filtro los enteros
+  return arregloDeEnteros.map(el => el * el); //Los devuelvo en cuadrado
+};
+
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+console.log(squaredIntegers);
+
+// squareList([4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2]) debe devolver [16, 1764, 36].
+// squareList([-3.7, -5, 3, 10, 12.5, 7, -4.5, -17, 0.3]) debe devolver [9, 100, 49].
+
+
+
+
+
+
+
+
+
+
+// Rellena la función urlSlug para convertir una cadena title y devolver la versión con guiones para la URL. Puedes utilizar cualquiera de los métodos vistos en esta sección y no utilices replace. Aquí están los requisitos:
+
+// La entrada es una cadena con espacios y palabras, en mayúsculas y minúsculas
+
+// El resultado es una cadena con los espacios entre palabras reemplazadas por un guion (-)
+
+// El resultado debe contener todas las letras minúsculas
+
+// El resultado no debe tener espacios
+// Cambia solo el código debajo de esta línea
+function urlSlug(title) {
+ return title
+    .toLowerCase()
+    .trim()
+    .split(/\s+/) //Los separa en un arreglo a la primera deteccion de un caracter de a - z
+    .join("-"); //Convierte una cadena y le pone un - luego de cada elemento del arreglo
+}
+// Cambia solo el código encima de esta 
+urlSlug(" Winter Is  Coming")
+
+// urlSlug("Winter Is Coming") debe devolver la cadena winter-is-coming.
+// urlSlug(" Winter Is  Coming") debe devolver la cadena winter-is-coming.
+// urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone") debe devolver la cadena a-mind-needs-books-like-a-sword-needs-a-whetstone.
+// urlSlug("Hold The Door") debe devolver la cadena hold-the-door.
+
+
+
+
+
+
+//EJERCICIOS DE ALGORITMOS, PARTE 2 INTERMEDIO
+
+// Suma todos los números en un rango
+// Te pasaremos un arreglo de dos números. Devuelve la suma de estos dos números más la suma de todos los números entre ellos. El número más bajo no siempre será el primero.
+
+// Por ejemplo, sumAll([4,1])> debe devolver 10 porque la suma de todos los números entre 1 y 4 (ambos incluidos) es 10.
+
+function sumAll(arr) {
+  arr.sort((a,b) => a - b)
+   let resultado = arr[0]
+  for(let i = arr[0];i<arr[arr.length - 1];i++){
+      resultado += (i + 1)
+  }
+  return resultado
+}
+console.log(sumAll([10,5]));
+
+// sumAll([1, 4]) debe devolver 10.
+// sumAll([4, 1]) debe devolver 10.
+// sumAll([5, 10]) debe devolver 45.
+// sumAll([10, 5]) debería devolver 45.
+
+
+
+
+
+
+
+//Diferencia entre dos arreglos
+// Compara dos arreglos y devuelve un nuevo arreglo con los elementos que sólo se encuentran en uno de los dos arreglos dados, pero no en ambos. En otras palabras, devuelve la diferencia simétrica de los dos arreglos.
+
+// **Nota:**Puedes devolver el arreglo con sus elementos en cualquier orden.
+
+
+
+function diffArray(arr1, arr2) {
+  let arreglo = arr1.concat(arr2);
+  return arreglo.filter(el => arr1.includes(el) === false || arr2.includes(el) === false
+)}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+diffArray([1, "calf", 3, "piglet"], [1, "calf", 3, 4])
+// [1, 2, 3, 5], [1, 2, 3, 4, 5] debe devolver [4].
+// ["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"], ["diorite", "andesite", "grass", "dirt", "dead shrub"] debe devolver ["pink wool"].
+
+
+
+
+// Busca y destruye
+// Se proporcionará un arreglo inicial (el primer argumento en la función destroyer), seguido de uno o más argumentos. Elimina todos los elementos del arreglo inicial que tengan el mismo valor que estos argumentos.
+
+// Nota: Tienes que utilizar el objeto arguments.
+function destroyer(arr) {
+  let arreglo = [...arguments]
+  arreglo.shift()
+  return arr.filter(el => arreglo.indexOf(el) === -1);
+}
+
+console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
+//destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3) debe devolver [1, 5, 1].
+// destroyer([3, 5, 1, 2, 2], 2, 3, 5) debe devolver [1].
+// destroyer([2, 3, 2, 3], 2, 3) debe devolver [].
+// destroyer(["tree", "hamburger", 53], "tree", 53) debe devolver ["hamburger"].
+
+
+
+
+
+
+
+
+
+
+
+
+//Donde estás
+// Crea una función que busque a través de un arreglo de objetos (primer argumento) y devuelva un arreglo de todos los objetos que tengan pares de nombre y valor coincidentes (segundo argumento). Cada par de nombre y valor del objeto fuente tiene que estar presente en el objeto de la colección si se va a incluir en el arreglo devuelto.
+
+// Por ejemplo, si el primer argumento es [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], y el segundo argumento es { last: "Capulet" }, entonces debes devolver el tercer objeto del arreglo (el primer argumento), porque contiene el nombre y su valor, el cual fue pasado como segundo argumento.
+
+function whatIsInAName(collection, source) {
+  let props = Object.keys(source)
+  let values = Object.values(source)
+   for(let i = 0;i<values.length;i++){ //Itero sobre el 2do parametro y los busco en el primero
+     return collection.filter(el => {
+       if(props.length === 1) return (el.hasOwnProperty(props[i]) && el[props[i]] === values[i])
+       if(props.length >= 2) return (el.hasOwnProperty(props[i]) && el[props[i]] === values[i]) && (el.hasOwnProperty(props[i +1]) && el[props[i +1]] === values[i +1])
+      })
+  }
+  } 
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" })
+// whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" }) debe devolver [{ first: "Tybalt", last: "Capulet" }].
+// whatIsInAName([{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }], { "apple": 1 }) debe devolver [{ "apple": 1 }, { "apple": 1 }, { "apple": 1, "bat": 2 }].
+// whatIsInAName([{ "apple": 1, "bat": 2 }, { "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "bat": 2 }) debe devolver [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }].
+// whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }], { "apple": 1, "cookie": 2 }) debe devolver [{ "apple": 1, "bat": 2, "cookie": 2 }].
+// whatIsInAName([{ "apple": 1, "bat": 2 }, { "apple": 1 }, { "apple": 1, "bat": 2, "cookie": 2 }, { "bat":2 }], { "apple": 1, "bat": 2 }) debe devolver [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie":2 }].
+
+
+
+
+
+
+// Spinal case
+// Convierte una cadena a spinal case. Spinal case significa todas-las-palabras-en-minúscula-unidas-por-guiones.
+// function spinalCase(str) {
+//   var regex = /\s+|_+/g;
+//   str = str.replace(/([a-z])([A-Z])/g, "$1 $2");
+//   return str.replace(regex, "-").toLowerCase();
+// }
+
+// console.log(spinalCase('This Is Spinal Tap'));
+// console.log(spinalCase("thisIsSpinalTap"))
+// spinalCase("This Is Spinal Tap") debe devolver la cadena this-is-spinal-tap.
+// spinalCase("thisIsSpinalTap") debe devolver la cadena this-is-spinal-tap.
+// spinalCase("The_Andy_Griffith_Show") debe devolver la cadena the-andy-griffith-show.
+// spinalCase("Teletubbies say Eh-oh") debe devolver la cadena teletubbies-say-eh-oh.
+
+
+
+
+
+
+
+
+// Pig Latin (Latin de los cerdos)
+
+// Pig Latin (latin de los cerdos) es una manera de alterar las palabras en inglés. Las normas son las siguientes:
+
+// - Si una palabra comienza con una consonante, toma la primer consonante o grupo de consonantes, muévela al final de la palabra, y añade ay a ella.
+
+// - Si una palabra comienza con una vocal, solo añade way al final.
+
+function translatePigLatin(str) {
+for(let i = 0;i<str.length;i++) {
+      if(/^[^aeiou]+/.test(str[i])){
+      let textoFinal = str.match(/^[^aeiou]+/)
+      let text = textoFinal[0].toString()
+      str = str.slice(text.length)
+      return str = str.concat(textoFinal + "ay")
+     }
+     else{
+        return  str = str.concat("way")
+     }
+}
+}
+translatePigLatin("glove");
+// translatePigLatin("california") debe devolver la cadena aliforniacay.
+// translatePigLatin("paragraphs") debe devolver la cadena aragraphspay.
+// translatePigLatin("glove") debe devolver la cadena oveglay.
+// translatePigLatin("algorithm") debe devolver la cadena algorithmway.
+// translatePigLatin("eight") debe devolver la cadena eightway.
+// Debes manejar las palabras en donde la primera vocal viene en el centro de la palabra. translatePigLatin("schwartz") debe devolver la cadena artzschway.
+// Debes manejar las palabras sin vocales. translatePigLatin("rhythm") debe devolver la cadena rhythmay.
+
+
+
+
+
+
+
+
+
+
+// Busca y reemplaza
+
+// Realiza una búsqueda y reemplaza en la oración usando los argumentos proporcionados y devuelve la nueva oración.
+
+// El primer argumento es la frase sobre la que se va a realizar la búsqueda y el reemplazo.
+
+// El segundo argumento es la palabra que se reemplazará (antes).
+
+// El tercer argumento es lo que reemplazará el segundo argumento (después).
+
+// Note: Mantén la capitalización del primer carácter en la palabra original cuando lo estés reemplazando. Por ejemplo, si quieres reemplazar la palabra Book por la palabra dog, debe ser reemplazada como Dog
+// function myReplace(str, before, after) {
+//   if(before.charAt(0) === before.charAt(0).toLowerCase()) {
+//     return str.replace(before,after.charAt(0).toLowerCase() + after.slice(1))
+//   } 
+//   if(before.charAt(0) === before.charAt(0).toUpperCase()) {
+//     return str.replace(before,after.charAt(0).toUpperCase() + after.slice(1))
+//   }
+// }
+// console.log(myReplace("His name is Tom", "tom", "John"));
+// myReplace("I think we should look up there", "up", "Down") debe devolver la cadena I think we should look down there.
+// myReplace("This has a spellngi error", "spellngi", "spelling") debe devolver la cadena This has a spelling error.
+// myReplace("His name is Tom", "Tom", "john") debe devolver la cadena His name is John.
+// myReplace("Let us get back to more Coding", "Coding", "algorithms") debe devolver la cadena 
+
+
+
+
+
+
+
+
+// Emparejamiento de ADN
+
+// A la cadena de ADN le falta el elemento de emparejamiento. Toma cada carácter, obtén su par y devuelve los resultados como un arreglo bidimensional.
+
+// Par de bases son un par de AT y CG. Haz coincidir el elemento que falta con el carácter proporcionado.
+
+// Devuelve el carácter proporcionado como primer elemento de cada arreglo.
+
+// Por ejemplo, la entrada GCG, devolverá [["G", "C"], ["C","G"], ["G", "C"]]
+
+// El carácter y su par se emparejan en un arreglo, y todos los arreglos se agrupan en un arreglo encapsulado.
+
+function pairElement(str) {
+  let arrFinal = [...str]
+
+  return arrFinal.map(el => {
+    let arr = []
+    arr.push(el)
+    switch(el){
+      case "G" : 
+      arr.push("C")
+      break;
+      case "C" : 
+      arr.push("G")
+      break;
+      case "A" : 
+      arr.push("T")
+      break;
+      case "T" : 
+      arr.push("A")
+      break;
+    }
+    return arr
+  })
+}
+
+console.log(pairElement("GCG"));
+// pairElement("ATCGA") debe devolver [["A","T"],["T","A"],["C","G"],["G","C"],["A","T"]].
+// pairElement("TTGAG") debe devolver [["T","A"],["T","A"],["G","C"],["A","T"],["G","C"]].
+// pairElement("CTCTA") debe devolver [["C","G"],["T","A"],["C","G"],["T","A"],["A","T"]].
+
+
+
+
+
+
+
+
+// Letras faltantes
+
+// Encuentra la letra que falta en la siguiente cadena de letras y devuélvela.
+
+// Si todas las letras están presentes en la cadena, devuelve undefined.
+
+function fearNotLetter(str) {
+  let controlador = str.charCodeAt(0)
+  for(let i = 0;i<str.length;i++) {
+    if(str.charCodeAt(i) > controlador) return String.fromCharCode(controlador)
+    controlador++
+  }
+  return undefined;
+}
+//El Charcodeat va de 1 en 1 y el controlador tambien, si el charcodeat se saltea una letra van a pasar a ir por ejemlo : 108 y el controlador 107 y ahi es la letra que falta
+console.log(fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
+// fearNotLetter("abce") debe devolver la cadena d.
+// fearNotLetter("abcdefghjklmno") debe devolver la cadena i.
+// fearNotLetter("stvwx") debe devolver la cadena u.
+// fearNotLetter("bcdf") debe devolver la cadena e.
+// fearNotLetter("abcdefghijklmnopqrstuvwxyz") debe devolver undefined.
+
+
+
+
+
+
+
+// Unión ordenada
+
+// Escribe una función que tome dos o más arreglos y devuelve un nuevo arreglo de valores únicos manteniendo el orden original de los arreglos proporcionados.
+
+// En otras palabras, todos los valores presentes de todos los arreglos deben incluirse en su orden original, pero sin duplicados en el arreglo final.
+
+// Los números únicos deben ser ordenados según su orden original, pero el arreglo final no debe ordenarse según el orden numérico.
+
+// Revisa las pruebas de afirmación para ver ejemplos.
+function uniteUnique(...arr) {
+ let arrFinal = [];
+ arr.map(el => {
+ for(let i = 0;i<el.length;i++) {
+    arrFinal.push(el[i]) 
+ }}) 
+ return arrFinal.filter((numero,posicion,numeros) => {
+   return posicion === numeros.indexOf(numero)
+ });
+}
+//Dejar todos los arreglos en un solo arr y luego sacar los repetidos,
+
+//Hice yo solo el PARAMETRO REST, el MAP, el FOR y la idea de crear un solo arr y luego filtrar, lo unico que me copie es el filtrado final aunque me di cuenta solo que se hacia con indexOf
+
+console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+// uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]) debe devolver [1, 3, 2, 5, 4].
+// uniteUnique([1, 2, 3], [5, 2, 1]) debe devolver [1, 2, 3, 5].
+// uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]) debe devolver [1, 2, 3, 5, 4, 6, 7, 8].
+
+
+
+
+
+
+
+// Convierte entidades HTML
+
+// Convierte los caracteres &, <, >, " (dobles comillas), y ' (apóstrofo), en un cadena con su correspondiente entidad HTML.
+//   
+function convertHTML(str) {
+
+for(let i = 0;i<str.length;i++) {
+ if(str[i] === "&") str = str.replace("&","&amp;");
+ if(str[i] === "<") str =  str.replace(str[i],"&lt;");
+ if(str[i] === ">") str =  str.replace(str[i],"&gt;");
+ if(str[i] === '"') str =  str.replace(str[i],"&quot;");
+ if(str[i] === "'") str =  str.replace(str[i],"&apos;");
+}
+ return str;
+}
+console.log(convertHTML("Dolce & Gabbana"))
+// convertHTML("Dolce & Gabbana") debe devolver la cadena Dolce &amp; Gabbana.
+// convertHTML("Hamburgers < Pizza < Tacos") debe devolver la cadena Hamburgers &lt; Pizza &lt; Tacos.
+// convertHTML("Sixty > twelve") debe devolver la cadena Sixty &gt; twelve.
+// convertHTML('Stuff in "quotation marks"') debe devolver la cadena Stuff in &quot;quotation marks&quot;.
+// convertHTML("Schindler's List") debe devolver la cadena Schindler&apos;s List.
+// convertHTML("<>") debe devolver la cadena &lt;&gt;.
+// convertHTML("abc") debe devolver la cadena abc.
+
+
+
+
+
+// Suma todos los números impares de Fibonacci
+
+// Dado un entero positivo num, devuelve la suma de todos los números impares de Fibonacci que son menores o iguales a num.
+
+// Los dos primeros números en la secuencia de Fibonacci son 1 y 1. Cada número adicional en la secuencia es la suma de los dos números anteriores. Los seis primeros números de la secuencia de Fibonacci son 1, 1, 2, 3, 5 y 8.
+
+// Por ejemplo, sumFibs(10) debe devolver 10 porque todos los números impares de Fibonacci menores o iguales a 10 son 1, 1, 3 y 5.
+
+function sumFibs(num) {
+  let a = 0, b = 1, c = 0;
+  let result = 0;
+  for(let i = 0;i<=num;i++) {
+   c = a + b
+   b = a //Hacemos la fibonacci
+   a = c
+   if(c <= num && c % 2 !== 0)  result += c //Si es impar y menor al mum lo sumamos
+  }
+  return result;
+}
+console.log(sumFibs(10))
+// sumFibs(1000) debe devolver 1785.
+// sumFibs(4000000) debe devolver 4613732.
+// sumFibs(4) debe devolver 5.
+// sumFibs(75024) debe devolver 60696.
+// sumFibs(75025) debe devolver 135721.
+
+
+
+
+
+// Suma todos los números primos
+// Un número primo es un número entero mayor que 1 con sólo dos divisores: 1 y el propio número. Por ejemplo, 2 es un número primo porque sólo es divisible entre 1 y 2. Por el contrario, 4 no es primo ya que es divisible entre 1, 2 y 4.
+
+// Reescribe sumPrimes para que devuelva la suma de todos los números primos que sean menores o iguales a num.
+function sumPrimes(num = undefined){
+  if(num === undefined) return console.error("No has ingresado ningun numero")
+  if(typeof(num) !== "number") return console.warn("Lo que ingresaste NO es un numero")
+  if(Math.sign(num) === -1 ) return console.warn("No puedes ingresar un numero negativo")
+
+  let   dividendo = 2;
+  let esPrimo = 0;
+  let resultado = 0
+  let resultadoFinal = 0
+  let j = 1
+for(let i = 0;i<=num;i++) {
+   for(;j<=dividendo;) {
+     esPrimo = dividendo / j
+     if(Number.isInteger(esPrimo) === true) resultado++
+     j++
+   }
+    if(resultado === 2) resultadoFinal += dividendo
+
+    dividendo++
+    j = 1
+    resultado = 0
+
+    if(dividendo > num) return resultadoFinal
+}}
+
+console.log(sumPrimes(977));
+
+// sumPrimes(10) debe devolver 17.
+// sumPrimes(977) debe devolver 73156.
+
+
+
+
+
+// Múltiplo común más pequeño
+// Encuentra el múltiplo común más pequeño de los parámetros proporcionados que pueden dividirse equitativamente por ambos, así como por todos los números consecutivos del rango entre estos parámetros.
+
+// El rango será un arreglo de dos números que no necesariamente estarán en orden numérico.
+
+// Por ejemplo, si se dan 1 y 3, encuentra el múltiplo común más pequeño de 1 y 3 que también es dividido por todos los números entre 1 y 3. La respuesta sería 6.
+
+function smallestCommons(arr) {
+ // if(!(arr instanceof Array)) return console.error("Solo se puede pasar un array por argumento")
+  arr = arr.sort((a,b) => a - b)  //Ordeno el arreglo de menor a mayor
+   let divisor = 1;
+  for(let i = 0;;i++){
+    if((divisor % arr[0]) == 0 &&  (divisor % arr[1]) === 0 ){  //Encuentro todos los multiplos entre los 2 numeros y luego verifico en el otro bucle for si son divisibles entre el rango de esos numeros
+  
+     for(let j =arr[0];j<arr[1];j++){ //Verifico el multiplo de arriba
+      if(!(divisor % j === 0)) break; //Si no es entero en algun caso ya no sirve
+       
+      if(j === arr[1] - 1)return divisor //Si j llego hasta ser igual a arr[1] - 1 quiere decir que nunca salio por el break y entonces todos los numeros fueron redondos, asi que ahi esta el multiplo
+       }
+    }
+   divisor++
+  }
+}
+
+
+console.log(smallestCommons([23,18]));
+// smallestCommons([1, 5]) debe devolver un número.
+// smallestCommons([1, 5]) debe devolver 60.
+// smallestCommons([5, 1]) debe devolver 60.
+// smallestCommons([2, 10]) debe devolver 2520.
+// smallestCommons([1, 13]) debe devolver 360360.
+// smallestCommons([23, 18]) debe devolver 6056820.
+
+
+
+
+
+
+
+// Déjalo caer
+// Dado el arreglo arr, itera y elimina cada elemento comenzando desde el primer elemento (el índice 0) hasta que la función func devuelva true cuando el elemento iterado se pasa a través de él.
+
+// Luego devuelve el resto del arreglo una vez que se cumpla la condición, de lo contrario, arr debe devolverse como un arreglo vacío.
+function dropElements(arr, func) {
+  for(let i = 0 ;i<arr.length;i++) {
+    if(func(arr[i])) {
+      arr.splice(0,i)
+      return arr
+   }
+  }
+  return []
+}
+console.log(dropElements([1, 2, 3, 4], function(n) {return n >= 3;}));
+// dropElements([1, 2, 3, 4], function(n) {return n >= 3;}) debe devolver [3, 4].
+// dropElements([0, 1, 0, 1], function(n) {return n === 1;}) debe devolver [1, 0, 1].
+// dropElements([1, 2, 3], function(n) {return n > 0;}) debe devolver [1, 2, 3].
+// dropElements([1, 2, 3, 4], function(n) {return n > 5;}) debe devolver [].
+// dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;}) debe devolver [7, 4].
+// dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}) debe devolver [3, 9, 2].
+
+
+
+
+
+
+
+// Aplanadora
+// Aplana un arreglo anidado. Debes tener en cuenta los diferentes niveles de anidación.
+function steamrollArray(arr) {
+  const flat = [].concat(...arr);
+  return flat.some(Array.isArray) ? steamrollArray(flat) : flat;
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
+// steamrollArray([[["a"]], [["b"]]]) debe devolver ["a", "b"].
+// steamrollArray([1, [2], [3, [[4]]]]) debe devolver [1, 2, 3, 4].
+// steamrollArray([1, [], [3, [[4]]]]) debe devolver [1, 3, 4].
+// steamrollArray([1, {}, [3, [[4]]]]) debe devolver [1, {}, 3, 4].
+
+
+
+
+
+
+
+
+// Agentes binarios
+// Devuelve una frase traducida al inglés de una cadena binaria pasada.
+
+// La cadena binaria estará separada por espacios.
+
+function binaryAgent(str) {
+  var biString = str.split(" ");
+  var uniString = [];
+
+  /*using the radix (or base) parameter in parseInt, we can convert the binary
+      number to a decimal number while simultaneously converting to a char*/
+
+  for (var i = 0; i < biString.length; i++) {
+    uniString.push(String.fromCharCode(parseInt(biString[i], 2)));
+  }
+
+  // we then simply join the string
+  return uniString.join("");
+}
+
+//Este no lo hice solo ,LO COPIE
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+// binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+// binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111") debe devolver la cadena Aren't bonfires fun!?
+
+// Aprobado
+// binaryAgent("01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001") debe devolver la cadena I love FreeCodeCamp!
+
+
+
+
+
+// Todo sea verdad
+// Comprueba si el predicado (segundo argumento) es truthy en todos los elementos de una colección (primer argumento).
+
+// En otras palabras, se te da una colección de arreglos de objetos. El predicado pre será una propiedad del objeto y debe devolver true si su valor es truthy. De lo contrario, devuelve false.
+
+// En JavaScript, los valores truthy son valores que se traducen en true cuando se evalúan en un contexto booleano.
+
+// Recuerda, puedes acceder a las propiedades del objeto mediante la notación de puntos o la notación de corchetes [].
+
+
+function truthCheck(collection, pre) {
+  return collection.every((el) =>Boolean(el[pre])
+  //Every devuelve true si todos los elementos (Boolean(el[pre])) son verdadero(truthy)
+)}
+truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
+// truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex") debe devolver true.
+// truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex") debe devolver false.
+// truthCheck([{"user": "Tinky-Winky", "sex": "male", "age": 0}, {"user": "Dipsy", "sex": "male", "age": 3}, {"user": "Laa-Laa", "sex": "female", "age": 5}, {"user": "Po", "sex": "female", "age": 4}], "age") debe devolver false.
+// truthCheck([{"name": "Pete", "onBoat": true}, {"name": "Repeat", "onBoat": true}, {"name": "FastForward", "onBoat": null}], "onBoat") debe devolver false.
+// truthCheck([{"name": "Pete", "onBoat": true}, {"name": "Repeat", "onBoat": true, "alias": "Repete"}, {"name": "FastForward", "onBoat": true}], "onBoat") debe devolver true.
+// truthCheck([{"single": "yes"}], "single") debe devolver true.
+// truthCheck([{"single": ""}, {"single": "double"}], "single") debe devolver false.
+// truthCheck([{"single": "double"}, {"single": undefined}], "single") debe devolver false.
+// truthCheck([{"single": "double"}, {"single": NaN}], "single") debe devolver false.
+
+
+
+
+
+
+
+
+
+
+// Argumentos opcionales
+// Crea una función que sume dos argumentos. Si sólo se proporciona un argumento, entonces devuelve una función que espera un argumento y devuelve la suma.
+
+// Por ejemplo, addTogether(2, 3) debe devolver 5 y addTogether(2) debe devolver una función.
+
+// Si se llama a esta función devuelta con un solo argumento, se obtendrá la suma:
+
+// var sumTwoAnd = addTogether(2);
+// sumTwoAnd(3) devuelve 5.
+
+// Si cualquiera de los dos argumentos no es un número válido, devuelve undefined.
+
+function addTogether(num1 = undefined,num2 = undefined) { {
+
+if(num1 == undefined || num2 === undefined) {
+  if(typeof num1 !== "number") return undefined
+  return function(arg){
+    if(typeof num1 !== "number" ||  typeof arg !== "number") return undefined
+    return arg + num1
+  }
+}
+
+}
+if(typeof num1 !== "number" ||  typeof num2 !== "number") return undefined
+return num1 + num2;
+}
+let sumTwoAnd = addTogether(2);
+console.log(sumTwoAnd(4))
+console.log(addTogether(2, "3"))
+// addTogether(2, 3) debe devolver 5.
+// addTogether(23, 30) debe devolver 53.
+// addTogether(5)(7) debe devolver 12.
+// addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ") debe devolver undefined.
+// addTogether(2, "3") debe devolver undefined.
+// addTogether(2)([3]) debe devolver undefined.
+
+
+
+
+
+
+
+// Crea una persona
+// Completa el constructor de objetos con los siguientes métodos:
+
+// getFirstName()
+// getLastName()
+// getFullName()
+// setFirstName(first)
+// setLastName(last)
+// setFullName(firstAndLast)
+// Ejecuta las pruebas para ver el resultado esperado para cada método. Los métodos que toman un argumento deben aceptar sólo un argumento y tiene que ser una cadena. Estos métodos deben ser el único medio disponible para interactuar con el objeto.
+
+var Person = function(firstAndLast) {
+  // Cambia solo el código debajo de esta línea
+  // Completa el método de abajo e implementa los otros de manera similar
+  this.name = firstAndLast.split(" ")[0]
+  this.apellido = firstAndLast.split(" ")[1]
+  
+  this.setFirstName = function(first){
+   this.name = first
+  }
+  this.setLastName = function(last) {
+    this.apellido = last
+  }
+  
+  this.getFirstName = function(){
+    return this.name
+  }
+  this.getLastName = function() {
+    return this.apellido
+  }
+
+};
+Person.prototype.setFullName = function(fullname){
+    this.name = fullname.split(" ")[0]
+    this.apellido = fullname.split(" ")[1]
+}
+Person.prototype.getFullName = function() {
+    return this.name + " " + this.apellido
+  };
+var bob = new Person('Bob Ross');
+bob.setFirstName("Alan")
+console.log(bob)
+
+
+// No se deben agregar propiedades. Object.keys(bob).length siempre debe devolver 6.
+// bob instanceof Person debe devolver true.
+// bob.lastName debe devolver undefined.
+// bob.getFirstName() debe devolver la cadena Bob.
+// bob.getLastName() debe devolver la cadena Ross.
+// bob.getFullName() debe devolver la cadena Bob Ross.
+// bob.getFullName() debe devolver la cadena Haskell Ross after bob.setFirstName("Haskell").
+// bob.getFullName() debe devolver la cadena Haskell Curry después de bob.setLastName("Curry").
+// bob.getFullName() debe devolver la cadena Haskell Curry después de bob.setFullName("Haskell Curry").
+// bob.getFirstName() debe devolver la cadena Haskell después de bob.setFullName("Haskell Curry").
+// bob.getLastName() debe devolver la cadena Curry después de bob.setFullName("Haskell Curry").
+
+
+
+
+
+
+
+
+// Mapea el Debris
+// Devuelve un nuevo arreglo que transforma la altitud media de los elementos en sus periodos orbitales (en segundos).
+
+// El arreglo contendrá objetos en el formato {name: 'name', avgAlt: avgAlt}.
+
+// Puedes leer sobre los períodos orbitales en Wikipedia.
+
+// Los valores deben redondearse al número entero más cercano. El cuerpo orbitado es la Tierra.
+
+// El radio de la tierra es de 6367.4447 kilómetros y el valor GM de la tierra es de 398600.4418 km3s-2.
+function orbitalPeriod(arr) {
+  let earthRadius = 6367.4447;
+  let GM = 398600.4418;
+  let a = 2 * Math.PI
+
+    for(let i = 0;i<arr.length;i++){
+      let c = Math.pow(earthRadius + arr[i].avgAlt, 3);
+     let b = Math.sqrt(c / GM);
+     let orbPeriod = Math.round(a * b);
+     delete arr[i].avgAlt
+     arr[i].orbitalPeriod = orbPeriod
+    }
+    return arr
+}
+
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+// orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]) debe devolver [{name: "sputnik", orbitalPeriod: 86400}].
+// orbitalPeriod([{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}]) debe devolver [{name : "iss", orbitalPeriod: 5557}, {name: "hubble", orbitalPeriod: 5734}, {name: "moon", orbitalPeriod: 2377399}].
+
+
+
+
+
+
+
+// Comprobador de palíndromos
+
+// Devuelve true si la cadena proporcionada es un palíndromo. De lo contrario, devuelve false.
+// Un palíndromo es una palabra o frase que se escribe de la misma manera hacia adelante y hacia atrás, ignorando la puntuación, mayúsculas, minúsculas y espaciado.
+// Nota: Tendrás que eliminar todos los caracteres no alfanuméricos (puntuación, espacios y símbolos) y convertir todo en mayúsculas o minúsculas para comprobar si hay palíndromos.
+
+// Pasaremos cadenas con formatos variables, como racecar, RaceCar y race CAR entre otros.
+
+// También pasaremos cadenas con símbolos especiales, como 2A3*3a2, 2A3 3a2 y 2_A3*3#A2.
+
+function palindrome(str) {
+   let regex = /[()/_\-:\W\s]/
+ let textoFinal = []
+
+   let arr = [...str.toLowerCase()] //Convierto str a un arr para poder iterarlo con un map
+   arr.map(el => {
+    if(!(regex.test(el))) textoFinal.push(el)  //filtro los caracteres no alfanumericos(,.:etc)
+   })
+ 
+  let comparacion = [...textoFinal]  //Hago otra copia del arreglo y luego lo doy vuelta para compararlos
+  comparacion.reverse()
+
+  console.log(textoFinal,comparacion)
+  for(let i = 0;i<textoFinal.length;i++) {
+    if(textoFinal[i] !== comparacion[i]) return false  //Itero un arr en el indice 0 y el otro en length-1 y tienen que coincidir, sino no es polindromo y devuelve false
+  }
+  return true; //Si llego hasta aca sin retornar, es polindromo
+}
+
+
+console.log(palindrome("five|\_/|four"));
+// palindrome("eye") debe devolver un booleano.
+// palindrome("eye") debe devolver true.
+// palindrome("_eye") debe devolver true.
+// palindrome("race car") debe devolver true.
+// palindrome("not a palindrome") debe devolver false.
+// palindrome("A man, a plan, a canal. Panama") debe devolver true.
+// palindrome("never odd or even") debe devolver true.
+// palindrome("nope") debe devolver false.
+// palindrome("almostomla") debe devolver false.
+// palindrome("My age is 0, 0 si ega ym.") debe devolver true.
+// palindrome("1 eye for of 1 eye.") debe devolver false.
+// palindrome("0_0 (: /-\ :) 0-0") debe devolver true.
+// palindrome("five|\_/|four") debe devolver false.
+
+
+
+
+
+
+
+// Conversor de números romanos
+
+// Convierte el número proporcionado en un número romano.
+// Todos los números romanos deben proporcionarse en mayusculas.
+function convertToRoman(num) {
+ let numeroRomano = ""
+  let decenas = num.toString().length
+  num = num.toString()
+  for(let i = 0;i<num.length;i++) {
+    if(decenas == 1) {
+      switch(num[num.length - decenas]) {
+        case "1" : 
+         numeroRomano += "I"
+        break;
+        case "2" : 
+         numeroRomano += "II"
+        break;
+        case "3" :
+        numeroRomano += "III"
+        break;
+        case "4" : 
+        numeroRomano += "IV"
+        break;
+        case "5" : 
+        numeroRomano += "V"
+        break;
+        case "6" : 
+        numeroRomano += "VI"
+        break;
+        case "7" : 
+        numeroRomano += "VII"
+        break;
+        case "8" : 
+        numeroRomano += "VIII"
+        break;
+        case "9" : 
+        numeroRomano += "IX"
+        break;
+      }
+
+      
+    }
+   
+      if(decenas == 2){
+        switch(num[num.length - decenas]) {
+         
+        case "1": 
+         numeroRomano += "X"
+        break;
+        case "2": 
+         numeroRomano += "XX"
+        break;
+        case "3":
+        numeroRomano += "XXX"
+        break;
+        case "4" : 
+        numeroRomano += "XL"
+        break;
+        case "5": 
+        numeroRomano += "L"
+        break;
+        case "6": 
+        numeroRomano += "LX"
+        break;
+        case "7": 
+        numeroRomano += "LXX"
+        break;
+        case "8": 
+        numeroRomano += "LXXX"
+        break;
+        case "9": 
+        numeroRomano += "XC"
+        break;
+        }
+      }
+      
+        if(decenas == 3){
+        switch(num[num.length - decenas]) {
+        case "1": 
+         numeroRomano += "C"
+        break;
+        case "2": 
+         numeroRomano += "CC"
+        break;
+        case "3":
+        numeroRomano += "CCC"
+        break;
+        case "4" : 
+        numeroRomano += "CD"
+        break;
+        case "5": 
+        numeroRomano += "D"
+        break;
+        case "6": 
+        numeroRomano += "DC"
+        break;
+        case "7": 
+        numeroRomano += "DCC"
+        break;
+        case "8": 
+        numeroRomano += "DCCC"
+        break;
+        case "9": 
+        numeroRomano += "CM"
+        break;
+        }
+      }
+      if(decenas == 4){
+        switch(num[num.length - decenas]) {
+        case "1": 
+         numeroRomano += "M"
+        break;
+        case "2": 
+         numeroRomano += "MM"
+        break;
+        case "3":
+        numeroRomano += "MMM"
+        break;
+        case "4" : 
+        numeroRomano += "MMMM"
+        break;
+        case "5": 
+        numeroRomano += "D"
+        break;
+        case "6": 
+        numeroRomano += "DC"
+        break;
+        case "7": 
+        numeroRomano += "DCC"
+        break;
+        case "8": 
+        numeroRomano += "DCCC"
+        break;
+        case "9": 
+        numeroRomano += "CM"
+        break;
+        }}
+   decenas--
+   console.log(decenas)
+  }
+ return numeroRomano;
+}
+
+console.log(convertToRoman(500));
+// convertToRoman(2) debe devolver la cadena II.
+// convertToRoman(3) debe devolver la cadena III.
+// convertToRoman(4) debe devolver la cadena IV.
+// convertToRoman(5) debe devolver la cadena V.
+// convertToRoman(9) debe devolver la cadena IX.
+// convertToRoman(12) debe devolver la cadena XII.
+// convertToRoman(16) debe devolver la cadena XVI.
+// convertToRoman(29) debe devolver la cadena XXIX.
+// convertToRoman(44) debe devolver la cadena XLIV.
+// convertToRoman(45) debe devolver la cadena XLV.
+// convertToRoman(68) debe devolver la cadena LXVIII
+// convertToRoman(83) debe devolver la cadena LXXXIII
+// convertToRoman(97) debe devolver la cadena XCVII
+// convertToRoman(99) debe devolver la cadena XCIX
+// convertToRoman(400) debe devolver la cadena CD
+// convertToRoman(500) debe devolver la cadena D
+// convertToRoman(501) debe devolver la cadena DI
+// convertToRoman(649) debe devolver la cadena DCXLIX
+// convertToRoman(798) debe devolver la cadena DCCXCVIII
+// convertToRoman(891) debe devolver la cadena DCCCXCI
+// convertToRoman(1000) debe devolver la cadena M
+// convertToRoman(1004) debe devolver la cadena MIV
+// convertToRoman(1006) debe devolver la cadena MVI
+// convertToRoman(1023) debe devolver la cadena MXXIII
+// convertToRoman(2014) debe devolver la cadena MMXIV
+// convertToRoman(3999) debe devolver la cadena MMMCMXCIX
+
+
+
+
+
+
+// Cifrado César
+// Uno de los cifrados más simples y conocidos es el cifrado César, también conocido como cifrado por desplazamiento. En un cifrado por desplazamiento los significados de las letras se desplazan por una cantidad determinada.
+
+// Un uso moderno común es el cifrado ROT13, donde los valores de las letras son desplazados por 13 lugares. Así que A ↔ N, B ↔ O y así sucesivamente.
+
+// Escribe una función que reciba una cadena codificada en ROT13 como entrada y devuelva una cadena decodificada.
+
+// Todas las letras estarán en mayúsculas. No transformes ningún carácter no alfabético (espacios, puntuación, por ejemplo), pero si transmítelos.
+function rot13(str) {
+  let textoDevuelto = "", numero = 0,
+  regex = /[()/_\-:\W\s]/
+for(let i = 0;i<str.length;i++) {
+  numero = str.charCodeAt(i)  //Saco el unicode de letra por letra
+  if(regex.test(str[i])) { //Si es un signo especial(" ",.:) no lo modifico
+  textoDevuelto += str[i].match(regex)
+  continue;
+ }
+ if(numero <= 77)  textoDevuelto += String.fromCharCode(numero + 13) //Si el unicode es menor que 77 quiere decir que es M o anterior y le sumo trece
+ if(numero > 77) textoDevuelto += String.fromCharCode(numero - 13) //Si es mayor quiere decir que M > y le resto 
+}
+return textoDevuelto;
+}
+console.log(rot13("SERR CVMMN!"));
+// rot13("SERR PBQR PNZC") debe decodificarse en la cadena FREE CODE CAMP
+// rot13("SERR CVMMN!") debe decodificarse en la cadena FREE PIZZA!
+// rot13("SERR YBIR?") debe decodificarse en la cadena FREE LOVE?
+// rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.") debe decodificarse en la cadena THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.
+
+
+
+
+
+
+
+
+// Validador de números telefónicos
+
+// Devuelve true si la cadena pasada concuerda con un número de teléfono válido en Estados Unidos.
+
+// El usuario puede completar el campo del formulario de la forma que elija, siempre que tenga el formato de un número estadounidense válido. Los siguientes ejemplos son de formatos válidos para números estadounidenses (consulte las pruebas a continuación para otras variantes):
+
+// 555-555-5555
+// (555)555-5555
+// (555) 555-5555
+// 555 555 5555
+// 5555555555
+// 1 555 555 5555
+// Para este desafío se te presentará una cadena como 800-692-7753 o 8oo-six427676;laskdjf. Tu trabajo es validar o rechazar el número de teléfono estadounidense basado en cualquier combinación de los formatos proporcionados arriba. El código de área es obligatorio. Si el código de país es proporcionado, debes confirmar que el código de país es 1. Devuelve true si la cadena es un número de teléfono estadounidense valido; de lo contrario devuelve false.
+
+
+function telephoneCheck(str) {
+  let regex = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/
+  return regex.test(str) 
+}
+
+telephoneCheck("555-555-5555")
+// telephoneCheck("555-555-5555") debe devolver un booleano.
+// telephoneCheck("1 555-555-5555") debe devolver true.
+// telephoneCheck("1 (555) 555-5555") debe devolver true.
+// telephoneCheck("5555555555") debe devolver true.
+// telephoneCheck("555-555-5555") debe devolver true.
+// telephoneCheck("(555)555-5555") debe devolver true.
+// telephoneCheck("1(555)555-5555") debe devolver true.
+// telephoneCheck("555-5555") debe devolver false.
+// telephoneCheck("5555555") debe devolver false.
+// telephoneCheck("1 555)555-5555") debe devolver false.
+// telephoneCheck("1 555 555 5555") debe devolver true.
+// telephoneCheck("1 456 789 4444") debe devolver true.
+// telephoneCheck("123**&!!asdf#") debe devolver false.
+// telephoneCheck("55555555") debe devolver false.
+// telephoneCheck("(6054756961)") debe devolver false.
+// telephoneCheck("2 (757) 622-7382") debe devolver false.
+// telephoneCheck("0 (757) 622-7382") debe devolver false.
+// telephoneCheck("-1 (757) 622-7382") debe devolver false.
+// telephoneCheck("2 757 622-7382") debe devolver false.
+// telephoneCheck("10 (757) 622-7382") debe devolver false.
+// telephoneCheck("27576227382") debe devolver false.
+// telephoneCheck("(275)76227382") debe devolver false.
+// telephoneCheck("2(757)6227382") debe devolver false.
+// telephoneCheck("2(757)622-7382") debe devolver false.
+// telephoneCheck("555)-555-5555") debe devolver false.
+// telephoneCheck("(555-555-5555") debe devolver false.
+// telephoneCheck("(555)5(55?)-5555") debe devolver false.
+// telephoneCheck("55 55-55-555-5") debe devolver false.
+
+
+
+
+
+
+
+
+// Caja registradora
+
+// Diseña una función checkCashRegister() que acepte el precio de compra como primer argumento (price), la cantidad pagada como segundo argumento (cash), y el dinero en efectivo que tiene la caja (cid) como tercer argumento.
+
+// cid es un arreglo 2D que enumera las monedas disponibles.
+
+// La función checkCashRegister() siempre debe devolver un objeto con una clave status y una clave change.
+
+// Devuelve {status: "INSUFFICIENT_FUNDS", change: []} si el efectivo en caja es menor que el cambio necesario, o si no puedes devolver el cambio exacto.
+
+// Devuelve {status: "CLOSED", change: [...]} si el efectivo en caja como valor de la clave change es igual al cambio que se debe entregar.
+
+// En cualquier otro caso, devuelve {status: "OPEN", change: [...]}, con el cambio a entregar en monedas y billetes, ordenados de mayor a menor, como valor de la clave change.
+
+// Unidad Monetaria	Importe
+// Penny	$0.01 (PENNY)
+// Nickel	$0.05 (NICKEL)
+// Dime	$0.1 (DIME)
+// Quarter	$0.25 (QUARTER)
+// Dollar	$1 (ONE)
+// Five Dollars	$5 (FIVE)
+// Ten Dollars	$10 (TEN)
+// Twenty Dollars	$20 (TWENTY)
+// One-hundred Dollars	$100 (ONE HUNDRED)
+// A continuación, un ejemplo del efectivo en caja en formato de arreglo:
+
+// [
+//   ["PENNY", 1.01],
+//   ["NICKEL", 2.05],
+//   ["DIME", 3.1],
+//   ["QUARTER", 4.25],
+//   ["ONE", 90],
+//   ["FIVE", 55],
+//   ["TEN", 20],
+//   ["TWENTY", 60],
+//   ["ONE HUNDRED", 100]
+// ]
+
+
+
+
+
+
+console.clear()
+
+
+
+
+
+
+  function checkCashRegister(price, cash, cid) {
+    let cidIgual = [...cid]
+  var difference = cash - price;
+  const originalDiff = difference;
+  var objectDevuelto = {
+    status: '',
+    change: []
+  }
+
+let arrCurrency = [
+    ["ONE HUNDRED", 100], 
+    ["TWENTY", 20], 
+    ["TEN", 10], 
+    ["FIVE", 5], 
+    ["ONE", 1], 
+    ["QUARTER", 0.25],
+    ["DIME", 0.1],
+    ["NICKEL", 0.05],
+    ["PENNY", 0.01]
+    ]
+    cid.reverse();
+
+  var cidSum = 0;
+  for(let i = 0; i<cid.length; i++){
+    cidSum += cid[i][1];
+  }
+  var result = [...arrCurrency];
+
+  for(let i = 0; i<arrCurrency.length; i++){
+    let returnMoney = 0; 
+    let bill = cid[i][1]/arrCurrency[i][1]
+      bill.toFixed(2);
+      while(difference.toFixed(2)>=arrCurrency[i][1] && bill>=1){
+        difference -= arrCurrency[i][1];
+        returnMoney += arrCurrency[i][1];
+        bill--;
+
+      }
+        if(returnMoney>0){
+          if(returnMoney - Math.floor(returnMoney) !== 0){result[i][1]= returnMoney.toFixed(2)
+          result[i][1] = parseFloat(result[i][1])}else{
+            result[i][1]= returnMoney;
+          }
+
+        }else{
+          result[i][1]= returnMoney;
+        }
+  }
+  let sumResult = 0;
+
+  for(let i = 0; i<cid.length; i++){
+    sumResult += result[i][1];
+  }
+  sumResult = sumResult.toFixed(2);
+  if(cidSum < originalDiff || sumResult < originalDiff){
+    objectDevuelto.status = 'INSUFFICIENT_FUNDS';
+    }else if(cidSum == originalDiff){
+      objectDevuelto.status = 'CLOSED';
+      objectDevuelto.change = cidIgual
+    }else{
+      let resultFiltered =[];
+      for(let a = 0; a<result.length; a++){
+        if(result[a][1]!==0){
+          resultFiltered.push(result[a]);  
+        } 
+        }
+     objectDevuelto.status = 'OPEN';
+     objectDevuelto.change = resultFiltered;
+    }
+     return objectDevuelto;
+}
+
+
+console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]));
+// checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) debe devolver un objeto.
+// checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) debe devolver {status: "OPEN", change: [["QUARTER", 0.5]]}.
+// checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) debe devolver {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}.
+// checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) debe devolver {status: "INSUFFICIENT_FUNDS", change: []}.
+// checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) debe devolver {status: "INSUFFICIENT_FUNDS", change: []}.
+// checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) debe devolver {status: "CLOSED", change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}.
+</script>
+</body>
+</html>
